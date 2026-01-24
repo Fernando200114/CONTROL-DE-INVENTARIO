@@ -1,23 +1,35 @@
-import axios from "axios";
+// src/api/productos.api.ts
+import api from "./api"; // tu instancia de Axios
 import type { Producto } from "../types/Producto";
+import type { PaginatedResponse } from "../types/Pagination";
 
-const API_URL = "https://paredes-inventario-api.desarrollo-software.xyz/api/productos/";
-
-export const getProductos = async (): Promise<Producto[]> => {
-  const res = await axios.get(API_URL);
-  return res.data.results;
-};
-
-export const createProducto = async (data: Omit<Producto, "id">): Promise<Producto> => {
-  const res = await axios.post(API_URL, data);
+/**
+ * Obtener todos los productos (con paginación)
+ */
+export const getProductos = async (): Promise<PaginatedResponse<Producto>> => {
+  const res = await api.get("productos/");
   return res.data;
 };
 
-export const updateProducto = async (id: number, data: Omit<Producto, "id">): Promise<Producto> => {
-  const res = await axios.put(`${API_URL}${id}/`, data);
+/**
+ * Crear un nuevo producto
+ */
+export const createProducto = async (producto: Producto): Promise<Producto> => {
+  const res = await api.post("productos/", producto);
   return res.data;
 };
 
+/**
+ * Actualizar un producto existente por ID
+ */
+export const updateProducto = async (id: number, producto: Producto): Promise<Producto> => {
+  const res = await api.put(`productos/${id}/`, producto);
+  return res.data;
+};
+
+/**
+ * Eliminar un producto por ID
+ */
 export const deleteProducto = async (id: number): Promise<void> => {
-  await axios.delete(`${API_URL}${id}/`);
+  await api.delete(`productos/${id}/`);
 };

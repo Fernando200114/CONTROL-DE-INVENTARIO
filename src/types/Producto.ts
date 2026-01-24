@@ -1,7 +1,10 @@
 export interface Producto {
-  id: number;
+  id?: number;
   nombre: string;
-  categoria: string;
   precio: number;
   stock: number;
+  cantidad_minima: number;
+  unidad: string;
+  categoria: number; // ID de la categoría
+  imagen?: string;
 }
