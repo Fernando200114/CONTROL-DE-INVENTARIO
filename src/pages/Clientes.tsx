@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { UserCircle, Mail, Phone, Trash2, Edit2, Plus, X } from "lucide-react";
+import { UserCircle, Mail, Phone, Trash2, Edit2, X } from "lucide-react";
 import { getClientes, saveCliente, deleteCliente } from "../api/clientes.api";
 import type { Cliente } from "../types/Cliente";
 import ClientForm from "../components/ClientForm";
@@ -7,7 +7,7 @@ import ClientForm from "../components/ClientForm";
 const Clientes = () => {
   const [clientes, setClientes] = useState<Cliente[]>([]);
   const [selected, setSelected] = useState<Cliente | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
 
   const isAdmin = localStorage.getItem("is_staff") === "true";
 

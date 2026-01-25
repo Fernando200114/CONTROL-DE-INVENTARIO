@@ -1,5 +1,4 @@
 import api from "./api";
-import type { Cliente } from "../types/Cliente";
 
 export const getClientes = async () => {
   const res = await api.get("clientes/");

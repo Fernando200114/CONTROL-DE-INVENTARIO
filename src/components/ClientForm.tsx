@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Cliente } from "../types/Cliente";
-import { Save, X, Lock } from "lucide-react"; // Añadimos Lock para el icono si lo usas
+import { Save, X } from "lucide-react"; // Añadimos Lock para el icono si lo usas
 
 export interface ClientFormData {
   nombre: string;
