@@ -5,6 +5,7 @@ export interface Producto {
   stock: number;
   cantidad_minima: number;
   unidad: string;
-  categoria: number; // ID de la categoría
-  imagen?: string;
+  categoria: number;
+  categoria_nombre?: string; 
+  imagen?: string; 
 }

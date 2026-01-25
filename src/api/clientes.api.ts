@@ -1,24 +1,38 @@
-import axios from "axios";
-
-const API_URL = "https://paredes-inventario-api.desarrollo-software.xyz/api/clientes/";
+import api from "./api";
+import type { Cliente } from "../types/Cliente";
 
 export const getClientes = async () => {
-  const res = await axios.get(API_URL);
-  return res.data.results;
+  const res = await api.get("clientes/");
+  // Si tu backend devuelve paginación ("results"), extraemos los datos
+  return res.data.results || res.data;
 };
 
-export const createCliente = async (data: any) => {
-  const res = await axios.post(API_URL, data);
-  return res.data;
+export const saveCliente = async (id: number | null, data: any) => {
+  if (id) {
+    // Para actualizar (PUT/PATCH): Usamos la estructura que ya vimos en tu GET
+    const res = await api.patch(`clientes/${id}/`, {
+      nombre: data.nombre,
+      email: data.email,
+      telefono: data.telefono
+    });
+    return res.data;
+  } else {
+    // PARA REGISTRO NUEVO (POST):
+    // Estructuramos el payload para que no haya confusión en el backend
+    const payload = {
+      username: data.email, 
+      email: data.email,
+      password: data.password,
+      nombre: data.nombre,      // 👈 Este debe llenar el campo "nombre" de tu JSON
+      first_name: data.nombre,  // 👈 Respaldo para el objeto User de Django
+      telefono: data.telefono
+    };
+    
+    const res = await api.post("auth/registro_cliente/", payload);
+    return res.data;
+  }
 };
 
-// 🆕 EDITAR
-export const updateCliente = async (id: number, data: any) => {
-  const res = await axios.put(`${API_URL}${id}/`, data);
-  return res.data;
-};
-
-// 🆕 ELIMINAR
 export const deleteCliente = async (id: number) => {
-  await axios.delete(`${API_URL}${id}/`);
+  await api.delete(`clientes/${id}/`);
 };

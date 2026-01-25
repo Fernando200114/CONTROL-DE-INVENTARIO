@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getUsuarios, deleteUsuario, saveUsuario, type DjangoUser } from "../api/usuarios.api";
 import UserForm from "../components/UserForm";
 import type { UserFormData } from "../components/UserForm";
+import { Users } from "lucide-react";
 
 const Usuarios = () => {
   const [usuarios, setUsuarios] = useState<DjangoUser[]>([]);
@@ -66,8 +67,15 @@ const Usuarios = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Gestión de Usuarios</h1>
-
+      <header className="mb-8 border-b border-slate-700 pb-4 flex justify-between items-center">
+        <h1 className="text-3xl font-bold flex items-center gap-3">
+          <Users className="text-cyan-500" size={32} />
+          Gestión de Usuarios
+        </h1>
+        <span className="text-xs bg-slate-800 text-cyan-400 px-3 py-1 rounded-full border border-cyan-500/30 font-mono">
+          TOTAL: {usuarios.length}
+        </span>
+      </header>
       {/* 1. Formulario: Solo visible para Administradores */}
       {isAdmin && (
         <section className="mb-10 bg-slate-800/40 p-6 rounded-xl border border-slate-700">

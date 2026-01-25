@@ -1,35 +1,29 @@
-// src/api/productos.api.ts
-import api from "./api"; // tu instancia de Axios
+import api from "./api"; 
 import type { Producto } from "../types/Producto";
 import type { PaginatedResponse } from "../types/Pagination";
 
-/**
- * Obtener todos los productos (con paginación)
- */
-export const getProductos = async (): Promise<PaginatedResponse<Producto>> => {
-  const res = await api.get("productos/");
+export const getProductos = async (page: number = 1, search: string = "", categoria: string = ""): Promise<PaginatedResponse<Producto>> => {
+  const res = await api.get("productos/", {
+    params: {
+      page: page,
+      search: search,
+      categoria: categoria // Asegúrate de que tu backend acepte este filtro
+    }
+  });
   return res.data;
 };
 
-/**
- * Crear un nuevo producto
- */
-export const createProducto = async (producto: Producto): Promise<Producto> => {
-  const res = await api.post("productos/", producto);
-  return res.data;
+export const saveProducto = async (id: number | null, data: FormData): Promise<Producto> => {
+  if (id) {
+    // PATCH es mucho más amigable con FormData en Django
+    const res = await api.patch(`productos/${id}/`, data);
+    return res.data;
+  } else {
+    const res = await api.post("productos/", data);
+    return res.data;
+  }
 };
 
-/**
- * Actualizar un producto existente por ID
- */
-export const updateProducto = async (id: number, producto: Producto): Promise<Producto> => {
-  const res = await api.put(`productos/${id}/`, producto);
-  return res.data;
-};
-
-/**
- * Eliminar un producto por ID
- */
 export const deleteProducto = async (id: number): Promise<void> => {
   await api.delete(`productos/${id}/`);
 };
