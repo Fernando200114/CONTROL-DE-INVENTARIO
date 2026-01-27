@@ -27,7 +27,7 @@ const ProductTable = ({ productos, onEdit, onDelete }: Props) => {
             <td>{p.stock}</td>
             <td>
               <button type="button" onClick={() => onEdit(p)}>✏️</button>
-              <button type="button" onClick={() => onDelete(p.id)}>🗑️</button>
+              <button type="button" onClick={() => p.id && onDelete(p.id)}>🗑️</button>
             </td>
           </tr>
         ))}

@@ -1,21 +1,21 @@
-export interface InventoryItem {
-  id:number;
-  nombre:string;
-  categoria:string;
-  stock:number;
-  proveedor:string;
-  fecha:string;
+import type { InventoryItem } from "./InventoryTable";
+
+interface Props {
+  items?: InventoryItem[];
 }
 
-interface Props { items: InventoryItem[] }
-
-const InventoryTable = ({ items }: Props) => {
+const InventoryTable = ({ items = [] }: Props) => {
   return (
     <div style={{ overflowX:"auto", border:"1px solid #1e293b", borderRadius:"12px" }}>
       <table style={{ width:"100%", borderCollapse:"collapse" }}>
         <thead style={{ background:"#0f172a", color:"#fff" }}>
           <tr>
-            <th>ID</th><th>Nombre</th><th>Categoría</th><th>Stock</th><th>Proveedor</th><th>Fecha</th>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Stock</th>
+            <th>Proveedor</th>
+            <th>Fecha</th>
           </tr>
         </thead>
         <tbody style={{ color:"#fff" }}>

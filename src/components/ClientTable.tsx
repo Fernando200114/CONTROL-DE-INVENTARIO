@@ -1,4 +1,4 @@
-import type { Cliente } from "../pages/Clientes";
+import type { Cliente } from "../types/Cliente";
 
 interface Props {
     clientes: Cliente[];
