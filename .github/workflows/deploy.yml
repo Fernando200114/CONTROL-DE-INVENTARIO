@@ -1,0 +1,46 @@
+name: Deploy Billing UI
+
+# Se ejecuta cada vez que haces un push a la rama main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descarga el código del repositorio en el servidor de GitHub
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Configura Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # O la versión que uses
+          cache: 'npm'
+
+      # 3. Instala dependencias y genera el build (la carpeta dist)
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+
+      # 4. Sube los archivos al servidor (solo el contenido de dist)
+      - name: Deploy to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          # Tomamos lo que está dentro de dist/ y lo enviamos
+          source: "dist/*"
+          # El destino final donde Nginx sirve la web
+          target: "/var/www/billing-ui"
+          # Quitamos el prefijo 'dist/' para que los archivos queden en la raíz de billing-ui
+          strip_components: 1
+
+      # 5. Opcional: Limpiar caché de Nginx o reiniciar si fuera necesario
+      # (Normalmente no es necesario para archivos estáticos)
