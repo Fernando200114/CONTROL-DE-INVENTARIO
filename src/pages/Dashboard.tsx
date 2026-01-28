@@ -28,7 +28,7 @@ const team = [
   },
   {
     name: "Paredes Erick",
-    role: "DESEMPLEADO",
+    role: "Empleado",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Erick",
     instagram: "#",
     facebook: "#",
