@@ -24,40 +24,40 @@ const Sidebar = () => {
                     <Package className="text-cyan-400" size={24} />
                 </div>
                 <h2 className="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-500 uppercase">
-                    INVENTARIO
+                    STOCKMASTER
                 </h2>
             </motion.div>
 
             {/* NAVEGACIÓN */}
             <nav className="flex flex-col gap-2">
-                <NavLink to="/" className={linkClasses}>
+                <NavLink to="/admin" className={linkClasses} end>
                     <Home size={20} /> <span className="font-medium">Dashboard</span>
                 </NavLink>
 
                 <div className="my-4 border-t border-slate-800/50 mx-2" /> {/* Separador */}
 
-                <NavLink to="/productos" className={linkClasses}>
+                <NavLink to="/admin/productos" className={linkClasses}>
                     <Package size={20} /> <span className="font-medium">Productos</span>
                 </NavLink>
 
-                <NavLink to="/categorias" className={linkClasses}>
+                <NavLink to="/admin/categorias" className={linkClasses}>
                     <Layers size={20} /> <span className="font-medium">Categorías</span>
                 </NavLink>
 
-                <NavLink to="/proveedores" className={linkClasses}>
+                <NavLink to="/admin/proveedores" className={linkClasses}>
                     <Truck size={20} /> <span className="font-medium">Proveedores</span>
                 </NavLink>
 
-                <NavLink to="/clientes" className={linkClasses}>
+                <NavLink to="/admin/clientes" className={linkClasses}>
                     <UserCircle size={20} /> <span className="font-medium">Clientes</span>
                 </NavLink>
 
-                <NavLink to="/usuarios" className={linkClasses}>
+                <NavLink to="/admin/usuarios" className={linkClasses}>
                     <Users size={20} /> <span className="font-medium">Usuarios</span>
                 </NavLink>
 
                 <div className="mt-auto pt-10"> {/* Empuja la configuración al fondo */}
-                    <NavLink to="/configuracion" className={linkClasses}>
+                    <NavLink to="/admin/configuracion" className={linkClasses}>
                         <Settings size={20} className="group-hover:rotate-90 transition-transform duration-500" /> 
                         <span className="font-medium">Configuración</span>
                     </NavLink>

@@ -12,7 +12,7 @@ const Header = () => {
     localStorage.removeItem("username");
     
     // 2. Redirigimos al login
-    navigate("/login");
+    navigate("/");
   };
 
   return (
