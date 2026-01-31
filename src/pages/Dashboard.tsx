@@ -19,16 +19,24 @@ import { getProveedores } from "../api/proveedores.api";
 
 const team = [
   {
+    name: "Paredes Erick",
+    role: "LEAD DEV",
+    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Erick",
+    instagram: "#",
+    facebook: "#",
+    linkedin: "#",
+  },
+  {
     name: "Fernando Llulluna",
-    role: "EMPLEADO SIN SALARIO",
+    role: "DEVELOPER",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Fernando",
     instagram: "#",
     facebook: "#",
     linkedin: "#",
   },
   {
-    name: "Paredes Erick",
-    role: "Empleado",
+    name: "Soliz Francisco",
+    role: "UI ENGINEER",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Erick",
     instagram: "#",
     facebook: "#",
